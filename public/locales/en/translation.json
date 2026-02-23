@@ -1,0 +1,180 @@
+{
+  "app": {
+    "name": "App@B2B",
+    "tagline": "Advanced Software Development Solutions",
+    "description": "Professional programming and web design services provider"
+  },
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "portfolio": "Portfolio",
+    "about": "About Us",
+    "contact": "Contact",
+    "login": "Login",
+    "register": "Register",
+    "dashboard": "Dashboard",
+    "admin": "Admin Panel",
+    "logout": "Logout"
+  },
+  "hero": {
+    "title": "Innovative Digital Solutions",
+    "subtitle": "We provide innovative solutions using the latest technologies in the world",
+    "cta_primary": "View Services",
+    "cta_secondary": "Request Collaboration"
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "Comprehensive solutions for your business",
+    "web_development": {
+      "title": "Advanced Web Development",
+      "description": "Design and development of modern websites with high security and performance for an unparalleled user experience."
+    },
+    "mobile_app": {
+      "title": "Mobile App Development",
+      "description": "Building mobile and desktop applications with unique user experience and excellent performance."
+    },
+    "ai": {
+      "title": "Artificial Intelligence",
+      "description": "Developing machine learning-based solutions, data processing, and computer vision."
+    },
+    "design": {
+      "title": "Graphic Design",
+      "description": "Decentralized solutions based on innovative design with high quality and transparency."
+    },
+    "order_project": "Order Project",
+    "technologies": "Technologies",
+    "features": "Features"
+  },
+  "portfolio": {
+    "title": "Portfolio",
+    "subtitle": "Projects completed by our team",
+    "all": "All",
+    "website": "Website",
+    "app": "App",
+    "graphic": "Graphic",
+    "view_details": "View Details",
+    "technologies": "Technologies",
+    "client": "Client",
+    "project_url": "Project URL",
+    "github": "GitHub"
+  },
+  "team": {
+    "title": "Our Team",
+    "subtitle": "Experienced experts by your side",
+    "experience": "Years Experience",
+    "projects": "Projects",
+    "skills": "Skills"
+  },
+  "about": {
+    "title": "About Us",
+    "description": "We are a creative studio in software design and development that offers unique digital solutions by combining art and technology.",
+    "stats": {
+      "projects": "Projects Completed",
+      "clients": "Happy Clients",
+      "awards": "Awards Won",
+      "experience": "Years Experience"
+    }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Contact Information",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "subject": "Subject",
+      "message": "Message",
+      "send": "Send Message",
+      "success": "Your message has been sent successfully."
+    },
+    "email": "Email",
+    "phone": "Phone",
+    "address": "Address"
+  },
+  "auth": {
+    "login": {
+      "title": "Login to Your Account",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Login",
+      "forgot_password": "Forgot password?",
+      "no_account": "Don't have an account?",
+      "register": "Register"
+    },
+    "register": {
+      "title": "Register",
+      "first_name": "First Name",
+      "last_name": "Last Name",
+      "email": "Email",
+      "phone": "Phone",
+      "company": "Company Name",
+      "password": "Password",
+      "password_confirm": "Confirm Password",
+      "submit": "Register",
+      "has_account": "Already have an account?",
+      "login": "Login"
+    },
+    "logout": "Logout"
+  },
+  "dashboard": {
+    "title": "User Dashboard",
+    "welcome": "Welcome",
+    "profile": "Profile",
+    "messages": "Messages",
+    "notifications": "Notifications",
+    "settings": "Settings",
+    "edit_profile": "Edit Profile",
+    "change_password": "Change Password",
+    "new_message": "New Message",
+    "send_message": "Send Message",
+    "no_messages": "No messages found",
+    "no_notifications": "No notifications found",
+    "mark_all_read": "Mark all as read"
+  },
+  "admin": {
+    "title": "Admin Panel",
+    "dashboard": "Dashboard",
+    "users": "Users",
+    "services": "Services",
+    "portfolio": "Portfolio",
+    "team": "Team",
+    "messages": "Messages",
+    "settings": "Settings",
+    "statistics": "Statistics",
+    "total_users": "Total Users",
+    "total_projects": "Total Projects",
+    "total_messages": "Total Messages",
+    "pending_messages": "Pending Messages"
+  },
+  "language": {
+    "fa": "فارسی",
+    "en": "English",
+    "switch": "Switch Language"
+  },
+  "footer": {
+    "tagline": "Anything that fits in your monitor rectangle is our job.",
+    "quick_links": "Quick Links",
+    "services": "Services",
+    "contact": "Contact",
+    "rights": "All rights reserved."
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "retry": "Retry",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "view_all": "View All",
+    "read_more": "Read More",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous"
+  }
+}

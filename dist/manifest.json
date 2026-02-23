@@ -1,0 +1,64 @@
+{
+  "name": "App@B2B",
+  "short_name": "App@B2B",
+  "description": "راهکارهای پیشرفته توسعه نرم‌افزار",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "fa",
+  "dir": "rtl",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "productivity", "utilities"],
+  "screenshots": [
+    {
+      "src": "/screenshot-1.jpg",
+      "sizes": "1280x720",
+      "type": "image/jpeg",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/screenshot-2.jpg",
+      "sizes": "750x1334",
+      "type": "image/jpeg"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "خدمات",
+      "short_name": "خدمات",
+      "description": "مشاهده خدمات ما",
+      "url": "/services",
+      "icons": [{ "src": "/icon-192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "نمونه کارها",
+      "short_name": "نمونه کارها",
+      "description": "مشاهده نمونه کارها",
+      "url": "/portfolio",
+      "icons": [{ "src": "/icon-192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "تماس با ما",
+      "short_name": "تماس",
+      "description": "تماس با ما",
+      "url": "/contact",
+      "icons": [{ "src": "/icon-192x192.png", "sizes": "192x192" }]
+    }
+  ]
+}
