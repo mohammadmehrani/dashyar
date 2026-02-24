@@ -4,6 +4,7 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 
 const staticJsonBackend = {
   type: 'backend' as const,
+  init: () => {},
   read: async (language: string, _namespace: string, callback: (error: unknown, data: unknown) => void) => {
     try {
       const response = await fetch(`/locales/${language}/translation.json`, {
@@ -22,7 +23,7 @@ const staticJsonBackend = {
 };
 
 i18n
-  .use(staticJsonBackend)
+  .use(staticJsonBackend as any)
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
