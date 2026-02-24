@@ -13,7 +13,7 @@ python -m venv .venv
 .venv\Scripts\activate
 pip install -r requirements.txt
 python manage.py migrate
-python manage.py create_admin_user --email admin@dashyar.com --password Admin@123456
+python manage.py create_admin_user --email mehrani1992@gmail.com --password Aa111111
 python manage.py seed_initial_content
 python manage.py runserver
 ```
@@ -31,7 +31,7 @@ Frontend runs on `http://localhost:3000` and proxies `/api` to Django.
 - URL: `http://localhost:8000/admin/`
 - Default command example:
 ```bash
-python manage.py create_admin_user --email admin@dashyar.com --password Admin@123456
+python manage.py create_admin_user --email mehrani1992@gmail.com --password Aa111111
 ```
 
 You can also use env vars:

@@ -8,8 +8,8 @@ class Command(BaseCommand):
     help = "Create or update a default admin user for dashboard and Django admin login."
 
     def add_arguments(self, parser):
-        parser.add_argument("--email", default=os.getenv("ADMIN_EMAIL", "admin@dashyar.com"))
-        parser.add_argument("--password", default=os.getenv("ADMIN_PASSWORD", "Admin@123456"))
+        parser.add_argument("--email", default=os.getenv("ADMIN_EMAIL", "mehrani1992@gmail.com"))
+        parser.add_argument("--password", default=os.getenv("ADMIN_PASSWORD", "Aa111111"))
         parser.add_argument("--first-name", default=os.getenv("ADMIN_FIRST_NAME", "Dashyar"))
         parser.add_argument("--last-name", default=os.getenv("ADMIN_LAST_NAME", "Admin"))
         parser.add_argument("--username", default=os.getenv("ADMIN_USERNAME", "dashyar_admin"))
