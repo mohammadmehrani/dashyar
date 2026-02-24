@@ -2,19 +2,18 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '@/contexts/AuthContext';
+import { useTheme } from '@/components/theme-provider';
 import { Button } from '@/components/ui/button';
 import {
   NavigationMenu,
+  NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
+  NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-} from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import {
   DropdownMenu,
@@ -23,60 +22,110 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Menu, User, LogOut, LayoutDashboard, Shield } from 'lucide-react';
+import { Menu, User, LogOut, LayoutDashboard, Shield, Sun, Moon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-const navItems = [
+const mainNav = [
   { href: '/', label: 'nav.home' },
-  { href: '/services', label: 'nav.services' },
   { href: '/portfolio', label: 'nav.portfolio' },
-  { href: '/about', label: 'nav.about' },
   { href: '/contact', label: 'nav.contact' },
 ];
 
 export default function Navbar() {
   const { t, i18n } = useTranslation();
   const { isAuthenticated, user, logout, isAdmin } = useAuth();
+  const { theme, setTheme } = useTheme();
   const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const onScroll = () => setIsScrolled(window.scrollY > 18);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   const isRTL = i18n.language === 'fa';
+  const isDark = theme === 'dark';
+
+  const toggleTheme = () => {
+    setTheme(isDark ? 'light' : 'dark');
+  };
 
   return (
     <header
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-        isScrolled
-          ? 'bg-background/95 backdrop-blur-md shadow-sm border-b'
-          : 'bg-transparent'
+        isScrolled ? 'bg-background/90 backdrop-blur-md' : 'bg-transparent'
       )}
     >
       <div className="container mx-auto px-4">
-        <div className={cn(
-          'mt-3 flex h-16 items-center justify-between rounded-2xl px-3 transition-all',
-          isScrolled ? 'bg-background/90 border shadow-sm' : 'bg-background/60 backdrop-blur-md border border-white/40'
-        )}>
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-2">
-            <span className="text-2xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+        <div
+          className={cn(
+            'mt-3 flex h-16 items-center justify-between rounded-2xl px-3 border transition-all',
+            isScrolled ? 'bg-background shadow-sm' : 'bg-background/70 backdrop-blur-md border-white/40'
+          )}
+        >
+          <button
+            type="button"
+            onClick={toggleTheme}
+            className="flex items-center gap-2 rounded-xl px-2 py-1.5 hover:bg-accent"
+            title={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+          >
+            <span className="text-2xl font-extrabold bg-gradient-to-r from-primary to-cyan-400 bg-clip-text text-transparent">
               Dashyar
             </span>
-          </Link>
+            {isDark ? <Sun className="h-4 w-4 text-primary" /> : <Moon className="h-4 w-4 text-primary" />}
+          </button>
 
-          {/* Desktop Navigation */}
           <NavigationMenu className="hidden lg:flex">
             <NavigationMenuList>
-              {navItems.map((item) => (
+              <NavigationMenuItem>
+                <NavigationMenuTrigger className="bg-transparent">{t('nav.services')}</NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <div className="grid w-[520px] grid-cols-2 gap-3 p-4">
+                    {[
+                      '/services',
+                      '/services',
+                      '/services',
+                      '/services',
+                    ].map((href, index) => (
+                      <NavigationMenuLink asChild key={`${href}-${index}`}>
+                        <Link to={href} className="rounded-xl border p-3 hover:bg-accent">
+                          <p className="text-sm font-semibold">
+                            {index === 0
+                              ? t('services.web_development.title')
+                              : index === 1
+                              ? t('services.mobile_app.title')
+                              : index === 2
+                              ? t('services.ai.title')
+                              : t('services.design.title')}
+                          </p>
+                          <p className="mt-1 text-xs text-muted-foreground">
+                            {t('services.subtitle')}
+                          </p>
+                        </Link>
+                      </NavigationMenuLink>
+                    ))}
+                  </div>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <NavigationMenuTrigger className="bg-transparent">{t('nav.about')}</NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <div className="w-[340px] p-4">
+                    <NavigationMenuLink asChild>
+                      <Link to="/about" className="block rounded-xl border p-3 hover:bg-accent">
+                        <p className="text-sm font-semibold">{t('about.title')}</p>
+                        <p className="mt-1 text-xs text-muted-foreground">{t('about.description')}</p>
+                      </Link>
+                    </NavigationMenuLink>
+                  </div>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+
+              {mainNav.map((item) => (
                 <NavigationMenuItem key={item.href}>
                   <Link to={item.href}>
                     <NavigationMenuLink
@@ -94,7 +143,6 @@ export default function Navbar() {
             </NavigationMenuList>
           </NavigationMenu>
 
-          {/* Right Side */}
           <div className="flex items-center gap-2">
             {isAuthenticated ? (
               <DropdownMenu>
@@ -158,29 +206,31 @@ export default function Navbar() {
               </div>
             )}
 
-            {/* Mobile Menu */}
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild className="lg:hidden">
                 <Button variant="ghost" size="icon">
                   <Menu className="h-5 w-5" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side={isRTL ? 'right' : 'left'} className="w-[280px]">
-                <div className="flex flex-col gap-4 mt-8">
-                  <Link to="/" className="flex items-center gap-2 mb-4">
+              <SheetContent side={isRTL ? 'right' : 'left'} className="w-[300px]">
+                <div className="mt-8 space-y-4">
+                  <button
+                    type="button"
+                    onClick={toggleTheme}
+                    className="flex items-center gap-2 rounded-xl px-2 py-1.5 hover:bg-accent"
+                  >
                     <span className="text-xl font-bold">Dashyar</span>
-                  </Link>
+                    {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+                  </button>
 
                   <nav className="flex flex-col gap-2">
-                    {navItems.map((item) => (
+                    {[...mainNav, { href: '/services', label: 'nav.services' }, { href: '/about', label: 'nav.about' }].map((item) => (
                       <Link
-                        key={item.href}
+                        key={item.href + item.label}
                         to={item.href}
                         className={cn(
-                          'px-4 py-2 rounded-lg transition-colors',
-                          location.pathname === item.href
-                            ? 'bg-primary text-primary-foreground'
-                            : 'hover:bg-accent'
+                          'rounded-lg px-4 py-2 transition-colors',
+                          location.pathname === item.href ? 'bg-primary text-primary-foreground' : 'hover:bg-accent'
                         )}
                         onClick={() => setIsOpen(false)}
                       >
@@ -190,13 +240,13 @@ export default function Navbar() {
                   </nav>
 
                   {!isAuthenticated && (
-                    <div className="flex flex-col gap-2 mt-4 pt-4 border-t">
-                      <Button variant="outline" asChild>
+                    <div className="mt-4 border-t pt-4 space-y-2">
+                      <Button variant="outline" asChild className="w-full">
                         <Link to="/login" onClick={() => setIsOpen(false)}>
                           {t('nav.login')}
                         </Link>
                       </Button>
-                      <Button asChild>
+                      <Button asChild className="w-full">
                         <Link to="/register" onClick={() => setIsOpen(false)}>
                           {t('nav.register')}
                         </Link>

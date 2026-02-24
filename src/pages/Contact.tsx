@@ -18,6 +18,9 @@ export default function Contact() {
     name: '',
     email: '',
     phone: '',
+    company: '',
+    service_type: '',
+    budget: '',
     subject: '',
     message: '',
   });
@@ -34,7 +37,7 @@ export default function Contact() {
     mutationFn: (data: typeof formData) => coreAPI.sendContactMessage(data),
     onSuccess: () => {
       toast.success(t('contact.form.success'));
-      setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+      setFormData({ name: '', email: '', phone: '', company: '', service_type: '', budget: '', subject: '', message: '' });
     },
     onError: () => toast.error(t('contact.form.error')),
   });
@@ -45,7 +48,20 @@ export default function Contact() {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    sendMessageMutation.mutate(formData);
+    const composedMessage = [
+      formData.message,
+      formData.company ? `\nCompany: ${formData.company}` : '',
+      formData.service_type ? `\nService: ${formData.service_type}` : '',
+      formData.budget ? `\nBudget: ${formData.budget}` : '',
+    ].join('');
+
+    sendMessageMutation.mutate({
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      subject: formData.subject,
+      message: composedMessage,
+    });
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -129,6 +145,32 @@ export default function Contact() {
                       <div className="space-y-2">
                         <Label htmlFor="subject">{t('contact.form.subject')}</Label>
                         <Input id="subject" name="subject" value={formData.subject} onChange={handleChange} required />
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="company">{isRTL ? 'نام شرکت' : 'Company'}</Label>
+                        <Input id="company" name="company" value={formData.company} onChange={handleChange} />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="service_type">{isRTL ? 'نوع خدمت' : 'Service Type'}</Label>
+                        <Input
+                          id="service_type"
+                          name="service_type"
+                          value={formData.service_type}
+                          onChange={handleChange}
+                          placeholder={isRTL ? 'وب، موبایل، هوش مصنوعی...' : 'Web, Mobile, AI...'}
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="budget">{isRTL ? 'بازه بودجه' : 'Budget Range'}</Label>
+                        <Input
+                          id="budget"
+                          name="budget"
+                          value={formData.budget}
+                          onChange={handleChange}
+                          placeholder={isRTL ? 'مثلا ۵۰ تا ۱۰۰ میلیون' : 'e.g. $5k - $10k'}
+                        />
                       </div>
                     </div>
                     <div className="space-y-2">
