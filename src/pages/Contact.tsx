@@ -14,7 +14,25 @@ import { toast } from 'sonner';
 export default function Contact() {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === 'fa';
-  const [formData, setFormData] = useState({
+  type ContactFormState = {
+    name: string;
+    email: string;
+    phone: string;
+    company: string;
+    service_type: string;
+    budget: string;
+    subject: string;
+    message: string;
+  };
+  type ContactApiPayload = {
+    name: string;
+    email: string;
+    phone?: string;
+    subject: string;
+    message: string;
+  };
+
+  const [formData, setFormData] = useState<ContactFormState>({
     name: '',
     email: '',
     phone: '',
@@ -34,10 +52,10 @@ export default function Contact() {
   const contactInfo = contactInfoData?.data?.[0] || {};
 
   const sendMessageMutation = useMutation({
-    mutationFn: (data: typeof formData) => coreAPI.sendContactMessage(data),
+    mutationFn: (data: ContactApiPayload) => coreAPI.sendContactMessage(data),
     onSuccess: () => {
       toast.success(t('contact.form.success'));
-      setFormData({ name: '', email: '', phone: '', company: '', service_type: '', budget: '', subject: '', message: '' });
+    setFormData({ name: '', email: '', phone: '', company: '', service_type: '', budget: '', subject: '', message: '' });
     },
     onError: () => toast.error(t('contact.form.error')),
   });
@@ -55,17 +73,19 @@ export default function Contact() {
       formData.budget ? `\nBudget: ${formData.budget}` : '',
     ].join('');
 
-    sendMessageMutation.mutate({
+    const payload: ContactApiPayload = {
       name: formData.name,
       email: formData.email,
       phone: formData.phone,
       subject: formData.subject,
       message: composedMessage,
-    });
+    };
+
+    sendMessageMutation.mutate(payload);
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData((current) => ({ ...current, [event.target.name]: event.target.value }));
+    setFormData((current: ContactFormState) => ({ ...current, [event.target.name]: event.target.value }));
   };
 
   return (
