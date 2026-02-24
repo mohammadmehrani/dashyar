@@ -56,7 +56,7 @@ export default function AdminLayout() {
           </Button>
 
           <Link to="/admin" className="flex items-center gap-2 ml-4 lg:ml-0">
-            <span className="text-xl font-bold">App@B2B</span>
+            <span className="text-xl font-bold">Dashyar</span>
             <span className="text-xs bg-primary text-primary-foreground px-2 py-0.5 rounded">
               {t('admin.title')}
             </span>

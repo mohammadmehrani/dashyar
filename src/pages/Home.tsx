@@ -3,52 +3,34 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Code, Smartphone, Brain, Palette } from 'lucide-react';
+import { ArrowRight, Brain, Code, Palette, Smartphone } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { coreAPI } from '@/lib/api';
-
-const fadeInUp = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.5 },
-};
-
-const staggerContainer = {
-  animate: {
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
 
 const services = [
   {
     icon: Code,
     title: 'services.web_development.title',
     description: 'services.web_development.description',
-    technologies: ['React', 'Next.js', 'Node.js', 'Python'],
     color: 'from-blue-500 to-cyan-500',
   },
   {
     icon: Smartphone,
     title: 'services.mobile_app.title',
     description: 'services.mobile_app.description',
-    technologies: ['React Native', 'Flutter', 'iOS', 'Android'],
-    color: 'from-purple-500 to-pink-500',
+    color: 'from-fuchsia-500 to-pink-500',
   },
   {
     icon: Brain,
     title: 'services.ai.title',
     description: 'services.ai.description',
-    technologies: ['Python', 'TensorFlow', 'PyTorch', 'OpenAI'],
-    color: 'from-orange-500 to-red-500',
+    color: 'from-orange-500 to-rose-500',
   },
   {
     icon: Palette,
     title: 'services.design.title',
     description: 'services.design.description',
-    technologies: ['Figma', 'Adobe XD', 'Photoshop', 'Illustrator'],
-    color: 'from-green-500 to-emerald-500',
+    color: 'from-emerald-500 to-green-500',
   },
 ];
 
@@ -56,7 +38,6 @@ export default function Home() {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === 'fa';
 
-  // Fetch site content (for future use with dynamic content)
   useQuery({
     queryKey: ['site-content', i18n.language],
     queryFn: () => coreAPI.getSiteContent(i18n.language),
@@ -64,250 +45,127 @@ export default function Home() {
   });
 
   useEffect(() => {
-    document.title = 'App@B2B - ' + t('app.tagline');
+    document.title = `Dashyar - ${t('app.tagline')}`;
   }, [t]);
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Background Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-muted" />
-        
-        {/* Animated Background Shapes */}
-        <div className="absolute inset-0 overflow-hidden">
-          <motion.div
-            className="absolute -top-40 -right-40 w-80 h-80 bg-primary/10 rounded-full blur-3xl"
-            animate={{
-              scale: [1, 1.2, 1],
-              opacity: [0.3, 0.5, 0.3],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: 'easeInOut',
-            }}
-          />
-          <motion.div
-            className="absolute -bottom-40 -left-40 w-80 h-80 bg-primary/10 rounded-full blur-3xl"
-            animate={{
-              scale: [1.2, 1, 1.2],
-              opacity: [0.5, 0.3, 0.5],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: 'easeInOut',
-            }}
-          />
-        </div>
-
-        {/* Content */}
-        <div className="relative z-10 container mx-auto px-4 pt-20">
-          <motion.div
-            className="text-center max-w-4xl mx-auto"
-            variants={staggerContainer}
-            initial="initial"
-            animate="animate"
-          >
-            <motion.div variants={fadeInUp}>
-              <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
-                {t('app.description')}
-              </span>
-            </motion.div>
-
-            <motion.h1
-              variants={fadeInUp}
-              className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
+      <section className="relative overflow-hidden pt-28 pb-20 md:pt-36 md:pb-28">
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/10 via-background to-background" />
+        <div className="absolute -top-24 -left-24 h-72 w-72 rounded-full bg-blue-500/20 blur-3xl" />
+        <div className="absolute -bottom-24 -right-24 h-72 w-72 rounded-full bg-cyan-500/20 blur-3xl" />
+        <div className="relative container mx-auto px-4">
+          <div className="mx-auto max-w-4xl text-center">
+            <motion.span
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="inline-flex rounded-full border border-primary/20 bg-primary/10 px-4 py-2 text-xs md:text-sm text-primary"
             >
-              <span className="bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
-                {t('hero.title')}
-              </span>
+              {t('app.description')}
+            </motion.span>
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="mt-6 text-4xl font-bold leading-tight md:text-6xl"
+            >
+              {t('hero.title')}
             </motion.h1>
-
             <motion.p
-              variants={fadeInUp}
-              className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="mx-auto mt-6 max-w-2xl text-base text-muted-foreground md:text-xl"
             >
               {t('hero.subtitle')}
             </motion.p>
-
             <motion.div
-              variants={fadeInUp}
-              className="flex flex-col sm:flex-row items-center justify-center gap-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row"
             >
-              <Button size="lg" asChild className="group">
+              <Button size="lg" asChild>
                 <Link to="/services">
                   {t('hero.cta_primary')}
-                  <ArrowRight
-                    className={`ml-2 h-4 w-4 transition-transform group-hover:${
-                      isRTL ? '-translate-x-1' : 'translate-x-1'
-                    }`}
-                  />
+                  <ArrowRight className={`ml-2 h-4 w-4 ${isRTL ? 'rotate-180' : ''}`} />
                 </Link>
               </Button>
               <Button size="lg" variant="outline" asChild>
                 <Link to="/contact">{t('hero.cta_secondary')}</Link>
               </Button>
             </motion.div>
-          </motion.div>
+          </div>
 
-          {/* Stats */}
-          <motion.div
-            className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.5 }}
-          >
+          <div className="mx-auto mt-16 grid max-w-4xl grid-cols-2 gap-4 md:grid-cols-4 md:gap-8">
             {[
-              { value: '50+', label: t('about.stats.projects') },
-              { value: '30+', label: t('about.stats.clients') },
-              { value: '5+', label: t('about.stats.awards') },
-              { value: '8+', label: t('about.stats.experience') },
-            ].map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-primary mb-1">
-                  {stat.value}
-                </div>
-                <div className="text-sm text-muted-foreground">{stat.label}</div>
+              { value: '70+', label: t('about.stats.projects') },
+              { value: '40+', label: t('about.stats.clients') },
+              { value: '12+', label: t('about.stats.awards') },
+              { value: '9+', label: t('about.stats.experience') },
+            ].map((item) => (
+              <div key={item.label} className="rounded-xl border bg-card/50 p-4 text-center">
+                <div className="text-2xl font-bold text-primary md:text-3xl">{item.value}</div>
+                <div className="mt-1 text-xs text-muted-foreground md:text-sm">{item.label}</div>
               </div>
             ))}
-          </motion.div>
-        </div>
-
-        {/* Scroll Indicator */}
-        <motion.div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        >
-          <div className="w-6 h-10 rounded-full border-2 border-muted-foreground/30 flex items-start justify-center p-2">
-            <motion.div
-              className="w-1.5 h-1.5 rounded-full bg-muted-foreground"
-              animate={{ y: [0, 12, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            />
           </div>
-        </motion.div>
+        </div>
       </section>
 
-      {/* Services Section */}
-      <section id="services" className="py-20 md:py-32">
+      <section className="py-16 md:py-24">
         <div className="container mx-auto px-4">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <h2 className="text-3xl md:text-5xl font-bold mb-4">
-              {t('services.title')}
-            </h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              {t('services.subtitle')}
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          <div className="mx-auto mb-12 max-w-2xl text-center">
+            <h2 className="text-3xl font-bold md:text-5xl">{t('services.title')}</h2>
+            <p className="mt-4 text-muted-foreground md:text-lg">{t('services.subtitle')}</p>
+          </div>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {services.map((service, index) => {
               const Icon = service.icon;
               return (
                 <motion.div
-                  key={index}
-                  className="group relative p-8 rounded-2xl bg-card border hover:border-primary/50 transition-all duration-300 hover:shadow-lg"
+                  key={service.title}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  transition={{ delay: index * 0.08 }}
+                  className="group relative overflow-hidden rounded-2xl border bg-card p-6"
                 >
-                  {/* Gradient Background on Hover */}
-                  <div
-                    className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}
-                  />
-
+                  <div className={`absolute -top-8 -right-8 h-24 w-24 rounded-full bg-gradient-to-br ${service.color} opacity-20 blur-2xl`} />
                   <div className="relative">
-                    <div
-                      className={`inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-br ${service.color} text-white mb-6`}
-                    >
-                      <Icon className="h-7 w-7" />
+                    <div className={`mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br text-white ${service.color}`}>
+                      <Icon className="h-6 w-6" />
                     </div>
-
-                    <h3 className="text-xl font-bold mb-3">{t(service.title)}</h3>
-                    <p className="text-muted-foreground mb-6">
-                      {t(service.description)}
-                    </p>
-
-                    <div className="flex flex-wrap gap-2">
-                      {service.technologies.map((tech, techIndex) => (
-                        <span
-                          key={techIndex}
-                          className="px-3 py-1 text-xs rounded-full bg-muted text-muted-foreground"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
+                    <h3 className="text-xl font-semibold">{t(service.title)}</h3>
+                    <p className="mt-3 text-sm leading-7 text-muted-foreground md:text-base">{t(service.description)}</p>
                   </div>
                 </motion.div>
               );
             })}
           </div>
-
-          <motion.div
-            className="text-center mt-12"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.5 }}
-          >
-            <Button size="lg" variant="outline" asChild>
+          <div className="mt-10 text-center">
+            <Button asChild variant="outline">
               <Link to="/services">
                 {t('common.view_all')}
                 <ArrowRight className={`ml-2 h-4 w-4 ${isRTL ? 'rotate-180' : ''}`} />
               </Link>
             </Button>
-          </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 md:py-32">
+      <section className="pb-20 md:pb-24">
         <div className="container mx-auto px-4">
-          <motion.div
-            className="relative rounded-3xl overflow-hidden"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary/80" />
-            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIj48Y2lyY2xlIGN4PSIzMCIgY3k9IjMwIiByPSIyIi8+PC9nPjwvZz48L3N2Zz4=')] opacity-50" />
-
-            <div className="relative px-8 py-16 md:py-24 text-center">
-              <h2 className="text-3xl md:text-5xl font-bold text-primary-foreground mb-4">
-                {isRTL
-                  ? 'آماده شروع پروژه بعدی خود هستید؟'
-                  : 'Ready to start your next project?'}
-              </h2>
-              <p className="text-primary-foreground/80 text-lg max-w-2xl mx-auto mb-8">
-                {isRTL
-                  ? 'با ما تماس بگیرید و بیایید درباره ایده‌های شما صحبت کنیم.'
-                  : 'Contact us and let\'s talk about your ideas.'}
-              </p>
-              <Button
-                size="lg"
-                variant="secondary"
-                asChild
-                className="bg-background text-foreground hover:bg-background/90"
-              >
-                <Link to="/contact">
-                  {t('contact.title')}
-                  <ArrowRight className={`ml-2 h-4 w-4 ${isRTL ? 'rotate-180' : ''}`} />
-                </Link>
-              </Button>
-            </div>
-          </motion.div>
+          <div className="rounded-3xl bg-gradient-to-r from-primary to-primary/80 px-6 py-12 text-center md:px-10">
+            <h2 className="text-3xl font-bold text-primary-foreground md:text-4xl">{t('home.cta.title')}</h2>
+            <p className="mx-auto mt-4 max-w-2xl text-primary-foreground/85">{t('home.cta.subtitle')}</p>
+            <Button size="lg" variant="secondary" asChild className="mt-8 bg-background text-foreground hover:bg-background/90">
+              <Link to="/contact">
+                {t('contact.title')}
+                <ArrowRight className={`ml-2 h-4 w-4 ${isRTL ? 'rotate-180' : ''}`} />
+              </Link>
+            </Button>
+          </div>
         </div>
       </section>
     </div>

@@ -7,44 +7,33 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Checkbox } from '@/components/ui/checkbox';
 import { Loader2, Mail, Lock, Eye, EyeOff } from 'lucide-react';
 import { toast } from 'sonner';
 
 export default function Login() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const { login } = useAuth();
   const navigate = useNavigate();
-  const isRTL = i18n.language === 'fa';
-
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-    rememberMe: false,
-  });
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [formData, setFormData] = useState({ email: '', password: '' });
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
     setIsLoading(true);
-
     try {
       await login(formData.email, formData.password);
-      toast.success(isRTL ? 'ورود موفقیت‌آمیز' : 'Login successful');
+      toast.success(t('auth.login.success'));
       navigate('/dashboard');
     } catch (error: any) {
-      toast.error(error.message || (isRTL ? 'خطا در ورود' : 'Login failed'));
+      toast.error(error.message || t('auth.login.failed'));
     } finally {
       setIsLoading(false);
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData((current) => ({ ...current, [event.target.name]: event.target.value }));
   };
 
   return (
@@ -53,16 +42,11 @@ export default function Login() {
         className="w-full max-w-md"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
       >
         <Card>
           <CardHeader className="text-center">
             <CardTitle className="text-2xl">{t('auth.login.title')}</CardTitle>
-            <CardDescription>
-              {isRTL
-                ? 'وارد حساب کاربری خود شوید'
-                : 'Sign in to your account'}
-            </CardDescription>
+            <CardDescription>{t('auth.login.subtitle')}</CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -76,13 +60,12 @@ export default function Login() {
                     type="email"
                     value={formData.email}
                     onChange={handleChange}
-                    required
                     className="pl-10"
+                    required
                     placeholder="email@example.com"
                   />
                 </div>
               </div>
-
               <div className="space-y-2">
                 <Label htmlFor="password">{t('auth.login.password')}</Label>
                 <div className="relative">
@@ -93,57 +76,29 @@ export default function Login() {
                     type={showPassword ? 'text' : 'password'}
                     value={formData.password}
                     onChange={handleChange}
-                    required
                     className="pl-10 pr-10"
-                    placeholder="••••••••"
+                    required
                   />
                   <button
                     type="button"
-                    onClick={() => setShowPassword(!showPassword)}
+                    onClick={() => setShowPassword((current) => !current)}
                     className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
                   >
-                    {showPassword ? (
-                      <EyeOff className="h-4 w-4" />
-                    ) : (
-                      <Eye className="h-4 w-4" />
-                    )}
+                    {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                   </button>
                 </div>
               </div>
-
-              <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-2">
-                  <Checkbox
-                    id="rememberMe"
-                    checked={formData.rememberMe}
-                    onCheckedChange={(checked) =>
-                      setFormData((prev) => ({ ...prev, rememberMe: checked as boolean }))
-                    }
-                  />
-                  <Label htmlFor="rememberMe" className="text-sm font-normal cursor-pointer">
-                    {isRTL ? 'مرا به خاطر بسپار' : 'Remember me'}
-                  </Label>
-                </div>
-                <Link
-                  to="/forgot-password"
-                  className="text-sm text-primary hover:underline"
-                >
-                  {t('auth.login.forgot_password')}
-                </Link>
-              </div>
-
               <Button type="submit" className="w-full" disabled={isLoading}>
                 {isLoading ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    {isRTL ? 'در حال ورود...' : 'Signing in...'}
+                    {t('auth.login.loading')}
                   </>
                 ) : (
                   t('auth.login.submit')
                 )}
               </Button>
             </form>
-
             <div className="mt-6 text-center text-sm">
               <span className="text-muted-foreground">{t('auth.login.no_account')} </span>
               <Link to="/register" className="text-primary hover:underline font-medium">

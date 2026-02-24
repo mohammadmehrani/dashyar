@@ -51,7 +51,7 @@ export default function DashboardLayout() {
           </Button>
 
           <Link to="/" className="flex items-center gap-2 ml-4 lg:ml-0">
-            <span className="text-xl font-bold">App@B2B</span>
+            <span className="text-xl font-bold">Dashyar</span>
           </Link>
 
           <div className="flex-1" />

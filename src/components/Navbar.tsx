@@ -66,7 +66,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
             <span className="text-2xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-              App@B2B
+              Dashyar
             </span>
           </Link>
 
@@ -165,7 +165,7 @@ export default function Navbar() {
               <SheetContent side={isRTL ? 'right' : 'left'} className="w-[280px]">
                 <div className="flex flex-col gap-4 mt-8">
                   <Link to="/" className="flex items-center gap-2 mb-4">
-                    <span className="text-xl font-bold">App@B2B</span>
+                    <span className="text-xl font-bold">Dashyar</span>
                   </Link>
 
                   <nav className="flex flex-col gap-2">

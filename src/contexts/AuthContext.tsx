@@ -65,10 +65,23 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
       const response = await authAPI.getProfile();
       setUser(response.data);
-    } catch (error) {
+    } catch (error: any) {
       console.error('Failed to refresh user:', error);
-      localStorage.removeItem('access_token');
-      localStorage.removeItem('refresh_token');
+      if (error?.response?.status === 401) {
+        try {
+          const refreshToken = localStorage.getItem('refresh_token');
+          if (refreshToken) {
+            const refreshResponse = await authAPI.refresh(refreshToken);
+            localStorage.setItem('access_token', refreshResponse.data.access);
+            const profileResponse = await authAPI.getProfile();
+            setUser(profileResponse.data);
+            return;
+          }
+        } catch {
+          localStorage.removeItem('access_token');
+          localStorage.removeItem('refresh_token');
+        }
+      }
     } finally {
       setIsLoading(false);
     }

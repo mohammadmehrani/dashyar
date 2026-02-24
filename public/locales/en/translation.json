@@ -1,14 +1,14 @@
 {
   "app": {
-    "name": "App@B2B",
-    "tagline": "Advanced Software Development Solutions",
-    "description": "Professional programming and web design services provider"
+    "name": "Dashyar",
+    "tagline": "Modern Software Product Studio",
+    "description": "Web, mobile, AI, and product engineering partner"
   },
   "nav": {
     "home": "Home",
     "services": "Services",
     "portfolio": "Portfolio",
-    "about": "About Us",
+    "about": "About",
     "contact": "Contact",
     "login": "Login",
     "register": "Register",
@@ -17,41 +17,63 @@
     "logout": "Logout"
   },
   "hero": {
-    "title": "Innovative Digital Solutions",
-    "subtitle": "We provide innovative solutions using the latest technologies in the world",
-    "cta_primary": "View Services",
-    "cta_secondary": "Request Collaboration"
+    "title": "Build Better Digital Products",
+    "subtitle": "Dashyar helps teams launch scalable products with clear design, robust architecture, and business-focused execution.",
+    "cta_primary": "Explore Services",
+    "cta_secondary": "Start a Project"
+  },
+  "home": {
+    "cta": {
+      "title": "Need a reliable tech team for your next product?",
+      "subtitle": "Share your business goals with us. We turn ideas into production-ready systems."
+    }
   },
   "services": {
     "title": "Our Services",
-    "subtitle": "Comprehensive solutions for your business",
+    "subtitle": "End-to-end delivery from product strategy to development and growth.",
     "web_development": {
-      "title": "Advanced Web Development",
-      "description": "Design and development of modern websites with high security and performance for an unparalleled user experience."
+      "title": "Web Development",
+      "description": "Fast, secure web applications built with modern frontend and backend stacks."
     },
     "mobile_app": {
-      "title": "Mobile App Development",
-      "description": "Building mobile and desktop applications with unique user experience and excellent performance."
+      "title": "Mobile Development",
+      "description": "Cross-platform and native mobile apps focused on performance and usability."
     },
     "ai": {
-      "title": "Artificial Intelligence",
-      "description": "Developing machine learning-based solutions, data processing, and computer vision."
+      "title": "AI Solutions",
+      "description": "Applied AI for automation, prediction, and smart customer experiences."
     },
     "design": {
-      "title": "Graphic Design",
-      "description": "Decentralized solutions based on innovative design with high quality and transparency."
+      "title": "UI/UX Design",
+      "description": "User-centric design systems and interfaces aligned with your product goals."
     },
-    "order_project": "Order Project",
+    "cloud": {
+      "title": "Cloud & DevOps",
+      "description": "Infrastructure, CI/CD, observability, and secure deployment pipelines."
+    },
+    "security": {
+      "title": "Security Engineering",
+      "description": "Practical security hardening for applications, APIs, and infrastructure."
+    },
+    "performance": {
+      "title": "Performance Optimization",
+      "description": "Measure, tune, and improve runtime performance across your stack."
+    },
+    "cta": {
+      "title": "Looking for a custom implementation?",
+      "subtitle": "We can design and build a solution tailored to your workflow and budget."
+    },
+    "order_project": "Request a Project",
     "technologies": "Technologies",
     "features": "Features"
   },
   "portfolio": {
     "title": "Portfolio",
-    "subtitle": "Projects completed by our team",
+    "subtitle": "Selected product and software delivery case studies.",
     "all": "All",
     "website": "Website",
     "app": "App",
-    "graphic": "Graphic",
+    "graphic": "Design",
     "view_details": "View Details",
     "technologies": "Technologies",
     "client": "Client",
@@ -60,64 +82,79 @@
   },
   "team": {
     "title": "Our Team",
-    "subtitle": "Experienced experts by your side",
-    "experience": "Years Experience",
+    "subtitle": "Experienced engineers and designers focused on outcomes.",
+    "experience": "Years of Experience",
     "projects": "Projects",
     "skills": "Skills"
   },
   "about": {
     "title": "About Us",
-    "description": "We are a creative studio in software design and development that offers unique digital solutions by combining art and technology.",
+    "description": "Dashyar is a software studio delivering practical digital products for startups and enterprises.",
     "stats": {
-      "projects": "Projects Completed",
+      "projects": "Projects Delivered",
       "clients": "Happy Clients",
-      "awards": "Awards Won",
+      "awards": "Awards",
       "experience": "Years Experience"
     }
   },
   "contact": {
     "title": "Contact Us",
-    "subtitle": "Contact Information",
+    "subtitle": "Let us know what you are building.",
+    "city": "Tehran, Iran",
+    "email": "Email",
+    "phone": "Phone",
+    "address": "Address",
     "form": {
+      "title": "Send a Message",
       "name": "Name",
       "email": "Email",
       "phone": "Phone",
       "subject": "Subject",
       "message": "Message",
       "send": "Send Message",
-      "success": "Your message has been sent successfully."
-    },
-    "email": "Email",
-    "phone": "Phone",
-    "address": "Address"
+      "sending": "Sending...",
+      "success": "Your message was sent successfully.",
+      "error": "Could not send your message. Please try again."
+    }
   },
   "auth": {
     "login": {
-      "title": "Login to Your Account",
+      "title": "Login",
+      "subtitle": "Access your Dashyar account.",
       "email": "Email",
       "password": "Password",
       "submit": "Login",
+      "loading": "Signing in...",
+      "success": "Logged in successfully.",
+      "failed": "Login failed.",
       "forgot_password": "Forgot password?",
       "no_account": "Don't have an account?",
-      "register": "Register"
+      "register": "Create account"
     },
     "register": {
-      "title": "Register",
+      "title": "Create Account",
+      "subtitle": "Set up your account to manage projects and messages.",
       "first_name": "First Name",
       "last_name": "Last Name",
       "email": "Email",
       "phone": "Phone",
-      "company": "Company Name",
+      "company": "Company",
       "password": "Password",
       "password_confirm": "Confirm Password",
       "submit": "Register",
+      "loading": "Creating account...",
+      "success": "Registration completed.",
+      "failed": "Registration failed.",
+      "password_mismatch": "Passwords do not match.",
+      "accept_terms": "Please accept terms and conditions.",
+      "terms_label": "I agree to terms and conditions.",
       "has_account": "Already have an account?",
       "login": "Login"
     },
     "logout": "Logout"
   },
   "dashboard": {
-    "title": "User Dashboard",
+    "title": "Dashboard",
     "welcome": "Welcome",
     "profile": "Profile",
     "messages": "Messages",
@@ -127,8 +164,8 @@
     "change_password": "Change Password",
     "new_message": "New Message",
     "send_message": "Send Message",
-    "no_messages": "No messages found",
-    "no_notifications": "No notifications found",
+    "no_messages": "No messages yet.",
+    "no_notifications": "No notifications yet.",
     "mark_all_read": "Mark all as read"
   },
   "admin": {
@@ -147,20 +184,22 @@
     "pending_messages": "Pending Messages"
   },
   "language": {
-    "fa": "فارسی",
+    "fa": "Persian",
     "en": "English",
-    "switch": "Switch Language"
+    "switch": "Switch language"
   },
   "footer": {
-    "tagline": "Anything that fits in your monitor rectangle is our job.",
+    "tagline": "We build practical software systems that ship and scale.",
     "quick_links": "Quick Links",
     "services": "Services",
     "contact": "Contact",
-    "rights": "All rights reserved."
+    "rights": "All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
   },
   "common": {
     "loading": "Loading...",
-    "error": "An error occurred",
+    "error": "Something went wrong.",
     "retry": "Retry",
     "cancel": "Cancel",
     "save": "Save",
@@ -170,8 +209,8 @@
     "search": "Search",
     "filter": "Filter",
     "sort": "Sort",
-    "view_all": "View All",
-    "read_more": "Read More",
+    "view_all": "View all",
+    "read_more": "Read more",
     "close": "Close",
     "back": "Back",
     "next": "Next",

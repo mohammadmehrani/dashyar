@@ -37,7 +37,7 @@ export default function Portfolio() {
   });
 
   useEffect(() => {
-    document.title = t('portfolio.title') + ' - App@B2B';
+    document.title = t('portfolio.title') + ' - Dashyar';
   }, [t]);
 
   const projects = projectsData?.data?.results || [];

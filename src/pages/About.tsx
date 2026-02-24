@@ -43,7 +43,7 @@ export default function About() {
   });
 
   useEffect(() => {
-    document.title = t('about.title') + ' - App@B2B';
+    document.title = t('about.title') + ' - Dashyar';
   }, [t]);
 
   const teamMembers = teamData?.data || [];

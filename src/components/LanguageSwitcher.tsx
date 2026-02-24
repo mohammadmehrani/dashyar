@@ -9,13 +9,13 @@ import { Globe, Check } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const languages = [
-  { code: 'fa', name: 'فارسی', flag: '🇮🇷' },
-  { code: 'en', name: 'English', flag: '🇬🇧' },
+  { code: 'fa', name: 'فارسی', short: 'FA' },
+  { code: 'en', name: 'English', short: 'EN' },
 ];
 
 export default function LanguageSwitcher() {
   const { i18n, t } = useTranslation();
-  const currentLang = i18n.language;
+  const currentLang = i18n.language.startsWith('fa') ? 'fa' : 'en';
 
   const handleLanguageChange = (langCode: string) => {
     i18n.changeLanguage(langCode);
@@ -57,7 +57,9 @@ export default function LanguageSwitcher() {
               )}
             >
               <span className="flex items-center gap-2">
-                <span className="text-lg">{lang.flag}</span>
+                <span className="inline-flex h-6 w-6 items-center justify-center rounded-full border text-xs font-semibold">
+                  {lang.short}
+                </span>
                 <span>{lang.name}</span>
               </span>
               {currentLang === lang.code && (

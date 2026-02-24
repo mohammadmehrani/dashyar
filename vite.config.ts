@@ -11,9 +11,9 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg'],
       manifest: {
-        name: 'App@B2B',
-        short_name: 'App@B2B',
-        description: 'Professional B2B Application Development Services',
+        name: 'Dashyar',
+        short_name: 'Dashyar',
+        description: 'Dashyar Software Product Studio',
         theme_color: '#0f172a',
         background_color: '#0f172a',
         display: 'standalone',

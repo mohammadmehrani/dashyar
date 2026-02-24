@@ -33,7 +33,7 @@ export default function ProjectDetail() {
 
   useEffect(() => {
     if (project) {
-      document.title = (isRTL ? project.title_fa : project.title_en) + ' - App@B2B';
+      document.title = (isRTL ? project.title_fa : project.title_en) + ' - Dashyar';
     }
   }, [project, isRTL]);
 

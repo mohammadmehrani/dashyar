@@ -37,7 +37,7 @@ export default function Dashboard() {
   });
 
   useEffect(() => {
-    document.title = t('dashboard.title') + ' - App@B2B';
+    document.title = t('dashboard.title') + ' - Dashyar';
   }, [t]);
 
   const unreadMessages = unreadData?.data?.unread_messages || 0;

@@ -15,7 +15,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-l*etj^v7$*8la084ic&kh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [host.strip() for host in os.environ.get('ALLOWED_HOSTS', '*').split(',') if host.strip()]
 
 # Application definition
 INSTALLED_APPS = [
@@ -101,7 +101,7 @@ USE_TZ = True
 # Static files
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_DIRS = [BASE_DIR / 'static']
+STATICFILES_DIRS = [BASE_DIR / 'static'] if (BASE_DIR / 'static').exists() else []
 
 # Media files
 MEDIA_URL = '/media/'
@@ -135,14 +135,24 @@ SIMPLE_JWT = {
 }
 
 # CORS Settings
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_ALL_ORIGINS = os.environ.get('CORS_ALLOW_ALL_ORIGINS', str(DEBUG)).lower() == 'true'
 CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = [
+    origin.strip()
+    for origin in os.environ.get('CORS_ALLOWED_ORIGINS', '').split(',')
+    if origin.strip()
+]
+CSRF_TRUSTED_ORIGINS = [
+    origin.strip()
+    for origin in os.environ.get('CSRF_TRUSTED_ORIGINS', '').split(',')
+    if origin.strip()
+]
 
 # Email Settings (configure for production)
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-DEFAULT_FROM_EMAIL = 'nore@appb2b.com'
+DEFAULT_FROM_EMAIL = 'hello@dashyar.com'
 
 # Admin Settings
-ADMIN_SITE_HEADER = "App@B2B Admin"
-ADMIN_SITE_TITLE = "App@B2B Portal"
-ADMIN_INDEX_TITLE = "Welcome to App@B2B Administration"
+ADMIN_SITE_HEADER = "Dashyar Admin"
+ADMIN_SITE_TITLE = "Dashyar Portal"
+ADMIN_INDEX_TITLE = "Welcome to Dashyar Administration"
