@@ -89,7 +89,7 @@ class PasswordChangeSerializer(serializers.Serializer):
 
 
 class EmailOrUsernameTokenObtainPairSerializer(TokenObtainPairSerializer):
-    email = serializers.EmailField(required=False)
+    email = serializers.CharField(required=False, allow_blank=True)
     username = serializers.CharField(required=False)
     password = serializers.CharField(required=True, write_only=True, trim_whitespace=False)
 
