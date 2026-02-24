@@ -1,5 +1,8 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
+from django.contrib.auth import authenticate
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.tokens import RefreshToken
 from .models import UserProfile
 
 User = get_user_model()
@@ -83,3 +86,34 @@ class PasswordChangeSerializer(serializers.Serializer):
         if data['new_password'] != data['new_password_confirm']:
             raise serializers.ValidationError({"new_password_confirm": "Passwords do not match."})
         return data
+
+
+class EmailOrUsernameTokenObtainPairSerializer(TokenObtainPairSerializer):
+    email = serializers.EmailField(required=False)
+    username = serializers.CharField(required=False)
+    password = serializers.CharField(required=True, write_only=True, trim_whitespace=False)
+
+    def validate(self, attrs):
+        login_value = (attrs.get("email") or attrs.get("username") or "").strip()
+        password = attrs.get("password")
+
+        if not login_value or not password:
+            raise serializers.ValidationError({"detail": "Email/username and password are required."})
+
+        User = get_user_model()
+        user = User.objects.filter(email__iexact=login_value).first()
+        auth_username = user.email if user else login_value
+
+        authenticated_user = authenticate(
+            request=self.context.get("request"),
+            username=auth_username,
+            password=password,
+        )
+        if authenticated_user is None:
+            raise serializers.ValidationError({"detail": "No active account found with the given credentials."})
+
+        refresh = RefreshToken.for_user(authenticated_user)
+        return {
+            "refresh": str(refresh),
+            "access": str(refresh.access_token),
+        }

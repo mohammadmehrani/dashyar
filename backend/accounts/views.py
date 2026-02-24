@@ -3,14 +3,20 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.contrib.auth import get_user_model
+from rest_framework_simplejwt.views import TokenObtainPairView
 from .serializers import (
     UserSerializer, 
     UserRegistrationSerializer, 
     UserUpdateSerializer,
-    PasswordChangeSerializer
+    PasswordChangeSerializer,
+    EmailOrUsernameTokenObtainPairSerializer,
 )
 
 User = get_user_model()
+
+
+class EmailOrUsernameTokenObtainPairView(TokenObtainPairView):
+    serializer_class = EmailOrUsernameTokenObtainPairSerializer
 
 
 class RegisterView(generics.CreateAPIView):

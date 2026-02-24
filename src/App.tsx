@@ -86,7 +86,7 @@ function PublicRoute({ children }: { children: React.ReactNode }) {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider defaultTheme="dark" storageKey="appb2b-theme">
+      <ThemeProvider defaultTheme="light" storageKey="appb2b-theme">
         <AuthProvider>
           <Router>
             <Routes>

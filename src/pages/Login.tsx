@@ -57,7 +57,7 @@ export default function Login() {
                   <Input
                     id="email"
                     name="email"
-                    type="email"
+                    type="text"
                     value={formData.email}
                     onChange={handleChange}
                     className="pl-10"

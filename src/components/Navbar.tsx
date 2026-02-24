@@ -62,7 +62,10 @@ export default function Navbar() {
       )}
     >
       <div className="container mx-auto px-4">
-        <div className="flex h-16 items-center justify-between">
+        <div className={cn(
+          'mt-3 flex h-16 items-center justify-between rounded-2xl px-3 transition-all',
+          isScrolled ? 'bg-background/90 border shadow-sm' : 'bg-background/60 backdrop-blur-md border border-white/40'
+        )}>
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
             <span className="text-2xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
