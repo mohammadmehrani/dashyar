@@ -3,23 +3,16 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
 
-// Register PWA
-if (import.meta.env.PROD && 'serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker
-      .register('/sw.js')
-      .then((registration) => {
-        console.log('SW registered:', registration)
-      })
-      .catch((error) => {
-        console.log('SW registration failed:', error)
-      })
-  })
-} else if ('serviceWorker' in navigator) {
-  // Prevent stale cached bundles during development/debugging.
+// Force disable old SW caches that can cause stale chunks/black screens.
+if ('serviceWorker' in navigator) {
   navigator.serviceWorker.getRegistrations().then((registrations) => {
     registrations.forEach((registration) => registration.unregister())
   })
+  if ('caches' in window) {
+    caches.keys().then((keys) => {
+      keys.forEach((key) => caches.delete(key))
+    })
+  }
 }
 
 createRoot(document.getElementById('root')!).render(
