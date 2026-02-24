@@ -52,14 +52,6 @@ interface RegisterData {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-function getConnectivityHint() {
-  const apiUrl = import.meta.env.VITE_API_URL;
-  if (!apiUrl && typeof window !== 'undefined' && !['localhost', '127.0.0.1'].includes(window.location.hostname)) {
-    return 'Backend API is not configured for this domain. Set VITE_API_URL in deployment.';
-  }
-  return null;
-}
-
 function getApiErrorMessage(error: unknown, fallback: string): string {
   const axiosError = error as AxiosError<{ detail?: string; message?: string } | Record<string, string[]>>;
   const data = axiosError?.response?.data;
@@ -133,7 +125,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const profileResponse = await authAPI.getProfile();
       setUser(profileResponse.data);
     } catch (error: unknown) {
-      throw new Error(getConnectivityHint() || getApiErrorMessage(error, 'Login failed'));
+      throw new Error(getApiErrorMessage(error, 'Login failed'));
     }
   };
 
@@ -143,7 +135,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       // Auto login after registration
       await login(data.email, data.password);
     } catch (error: unknown) {
-      throw new Error(getConnectivityHint() || getApiErrorMessage(error, 'Registration failed'));
+      throw new Error(getApiErrorMessage(error, 'Registration failed'));
     }
   };
 
