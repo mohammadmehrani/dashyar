@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Toaster } from '@/components/ui/sonner';
 import { AuthProvider, useAuth } from '@/contexts/AuthContext';
 import { ThemeProvider } from '@/components/theme-provider';
+import AppErrorBoundary from '@/components/AppErrorBoundary';
 import './i18n';
 
 // Layouts
@@ -85,11 +86,12 @@ function PublicRoute({ children }: { children: React.ReactNode }) {
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider defaultTheme="light" storageKey="appb2b-theme">
-        <AuthProvider>
-          <Router>
-            <Routes>
+    <AppErrorBoundary>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider defaultTheme="light" storageKey="appb2b-theme">
+          <AuthProvider>
+            <Router>
+              <Routes>
               {/* Public Routes */}
               <Route element={<MainLayout />}>
                 <Route path="/" element={<Home />} />
@@ -152,12 +154,13 @@ function App() {
 
               {/* 404 */}
               <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Router>
-          <Toaster position="top-center" richColors />
-        </AuthProvider>
-      </ThemeProvider>
-    </QueryClientProvider>
+              </Routes>
+            </Router>
+            <Toaster position="top-center" richColors />
+          </AuthProvider>
+        </ThemeProvider>
+      </QueryClientProvider>
+    </AppErrorBoundary>
   );
 }
 

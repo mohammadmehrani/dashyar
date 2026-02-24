@@ -4,7 +4,7 @@ import './index.css'
 import App from './App.tsx'
 
 // Register PWA
-if ('serviceWorker' in navigator) {
+if (import.meta.env.PROD && 'serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker
       .register('/sw.js')
@@ -14,6 +14,11 @@ if ('serviceWorker' in navigator) {
       .catch((error) => {
         console.log('SW registration failed:', error)
       })
+  })
+} else if ('serviceWorker' in navigator) {
+  // Prevent stale cached bundles during development/debugging.
+  navigator.serviceWorker.getRegistrations().then((registrations) => {
+    registrations.forEach((registration) => registration.unregister())
   })
 }
 

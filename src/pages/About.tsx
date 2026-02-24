@@ -65,7 +65,12 @@ export default function About() {
       <section className="py-12 md:py-16">
         <div className="container mx-auto px-4">
           <div className="grid gap-6 lg:grid-cols-2">
-            <div className="rounded-3xl border bg-card p-6 md:p-8">
+            <motion.div
+              initial={{ opacity: 0, x: isRTL ? 24 : -24 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="rounded-3xl border bg-card p-6 md:p-8"
+            >
               <h2 className="text-2xl font-bold">{isRTL ? 'ماموریت ما' : 'Our Mission'}</h2>
               <p className="mt-4 text-sm leading-8 text-muted-foreground md:text-base">
                 {isRTL
@@ -84,15 +89,20 @@ export default function About() {
                   </div>
                 ))}
               </div>
-            </div>
-            <div className="rounded-3xl border bg-gradient-to-br from-primary/10 to-blue-100/60 p-6 md:p-8">
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: isRTL ? -24 : 24 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="rounded-3xl border bg-gradient-to-br from-primary/10 to-blue-100/60 p-6 md:p-8"
+            >
               <h2 className="text-2xl font-bold">{isRTL ? 'چشم‌انداز' : 'Vision'}</h2>
               <p className="mt-4 text-sm leading-8 text-muted-foreground md:text-base">
                 {isRTL
                   ? 'تبدیل شدن به شریک فناوری قابل‌اعتماد برای تیم‌هایی که می‌خواهند محصول دیجیتال حرفه‌ای بسازند.'
                   : 'Become the trusted technology partner for teams building serious digital products.'}
               </p>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -104,10 +114,17 @@ export default function About() {
             <p className="mt-3 text-muted-foreground">{t('team.subtitle')}</p>
           </div>
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {teamMembers.map((member: any) => {
+            {teamMembers.map((member: any, index: number) => {
               const skills = Array.isArray(member?.skills) ? member.skills : [];
               return (
-                <article key={member?.id ?? `${member?.name_en}-${member?.email}`} className="overflow-hidden rounded-2xl border bg-card shadow-sm">
+                <motion.article
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.05, duration: 0.4 }}
+                  key={member?.id ?? `${member?.name_en}-${member?.email}`}
+                  className="overflow-hidden rounded-2xl border bg-card shadow-sm"
+                >
                   <div className="aspect-[4/3] bg-muted">
                     <img
                       src={member?.photo || '/placeholder-avatar.jpg'}
@@ -126,7 +143,7 @@ export default function About() {
                       ))}
                     </div>
                   </div>
-                </article>
+                </motion.article>
               );
             })}
           </div>
