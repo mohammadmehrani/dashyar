@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { authAPI } from '@/lib/api';
+import type { AxiosError } from 'axios';
 
 interface User {
   id: number;
@@ -50,6 +51,27 @@ interface RegisterData {
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
+
+function getApiErrorMessage(error: unknown, fallback: string): string {
+  const axiosError = error as AxiosError<{ detail?: string; message?: string } | Record<string, string[]>>;
+  const data = axiosError?.response?.data;
+  if (!data) return fallback;
+
+  if (typeof data === 'object' && 'detail' in data && typeof data.detail === 'string') {
+    return data.detail;
+  }
+  if (typeof data === 'object' && 'message' in data && typeof data.message === 'string') {
+    return data.message;
+  }
+
+  if (typeof data === 'object') {
+    const first = Object.values(data)[0];
+    if (Array.isArray(first) && first.length > 0) {
+      return String(first[0]);
+    }
+  }
+  return fallback;
+}
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
@@ -102,8 +124,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       // Get user profile
       const profileResponse = await authAPI.getProfile();
       setUser(profileResponse.data);
-    } catch (error: any) {
-      throw new Error(error.response?.data?.detail || 'Login failed');
+    } catch (error: unknown) {
+      throw new Error(getApiErrorMessage(error, 'Login failed'));
     }
   };
 
@@ -112,8 +134,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       await authAPI.register(data);
       // Auto login after registration
       await login(data.email, data.password);
-    } catch (error: any) {
-      throw new Error(error.response?.data?.message || 'Registration failed');
+    } catch (error: unknown) {
+      throw new Error(getApiErrorMessage(error, 'Registration failed'));
     }
   };
 
@@ -128,8 +150,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     try {
       const response = await authAPI.updateProfile(data);
       setUser(response.data);
-    } catch (error: any) {
-      throw new Error(error.response?.data?.message || 'Update failed');
+    } catch (error: unknown) {
+      throw new Error(getApiErrorMessage(error, 'Update failed'));
     }
   };
 

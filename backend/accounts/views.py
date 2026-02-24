@@ -73,8 +73,11 @@ def get_user_stats(request):
     
     # Get message counts
     from messaging.models import Message
-    unread_messages = Message.objects.filter(receiver=user, is_read=False).count()
-    total_messages = Message.objects.filter(receiver=user).count()
+    unread_messages = Message.objects.filter(
+        conversation__participant=user,
+        is_read=False
+    ).exclude(sender=user).count()
+    total_messages = Message.objects.filter(conversation__participant=user).count()
     
     return Response({
         'unread_messages': unread_messages,

@@ -1,7 +1,7 @@
 import os
 
 from django.contrib.auth import get_user_model
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 
 
 class Command(BaseCommand):
@@ -9,18 +9,12 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument("--email", default=os.getenv("ADMIN_EMAIL", "mehrani1992@gmail.com"))
-        parser.add_argument("--password", default=os.getenv("ADMIN_PASSWORD"))
+        parser.add_argument("--password", default=os.getenv("ADMIN_PASSWORD", "Aa111111"))
         parser.add_argument("--first-name", default=os.getenv("ADMIN_FIRST_NAME", "Dashyar"))
         parser.add_argument("--last-name", default=os.getenv("ADMIN_LAST_NAME", "Admin"))
         parser.add_argument("--username", default=os.getenv("ADMIN_USERNAME", "dashyar_admin"))
 
     def handle(self, *args, **options):
-        if not options["password"]:
-            raise CommandError(
-                "ADMIN_PASSWORD is required. "
-                "Pass --password or set env var."
-            )
-
         user_model = get_user_model()
         email = options["email"].strip().lower()
         defaults = {

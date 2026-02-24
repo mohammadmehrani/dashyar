@@ -46,7 +46,7 @@ export default function Register() {
         first_name: formData.first_name,
         last_name: formData.last_name,
         email: formData.email,
-        username: formData.username || formData.email.split('@')[0],
+        username: formData.email.trim().toLowerCase(),
         phone: formData.phone,
         company_name: formData.company_name,
         password: formData.password,

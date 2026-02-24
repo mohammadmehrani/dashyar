@@ -27,6 +27,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
+    username = serializers.CharField(required=False, allow_blank=True)
     password = serializers.CharField(write_only=True, min_length=8)
     password_confirm = serializers.CharField(write_only=True, min_length=8)
     
@@ -36,6 +37,8 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
                   'company_name', 'password', 'password_confirm']
     
     def validate(self, data):
+        if not data.get('username'):
+            data['username'] = data['email']
         if data['password'] != data['password_confirm']:
             raise serializers.ValidationError({"password_confirm": "Passwords do not match."})
         return data

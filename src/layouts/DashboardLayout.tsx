@@ -15,7 +15,6 @@ import {
   User,
   MessageSquare,
   Bell,
-  Settings,
   LogOut,
   Menu,
 } from 'lucide-react';
@@ -83,13 +82,6 @@ export default function DashboardLayout() {
                   {t('dashboard.profile')}
                 </Link>
               </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/dashboard/settings">
-                  <Settings className="mr-2 h-4 w-4" />
-                  {t('dashboard.settings')}
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
               <DropdownMenuItem onClick={logout}>
                 <LogOut className="mr-2 h-4 w-4" />
                 {t('auth.logout')}
