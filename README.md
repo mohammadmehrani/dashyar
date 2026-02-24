@@ -18,6 +18,11 @@ python manage.py seed_initial_content
 python manage.py runserver
 ```
 
+Or on Windows run one command:
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\bootstrap-backend.ps1
+```
+
 ### 2) Frontend
 ```bash
 npm ci
@@ -46,6 +51,10 @@ You can also use env vars:
 ### Vercel (Frontend)
 - `vercel.json` is configured for Vite SPA rewrites.
 - Set `VITE_API_URL` to your deployed backend API URL.
+
+### Local frontend built from `dist`
+- If you open built frontend locally, set:
+  - `VITE_API_URL=http://127.0.0.1:8000/api`
 
 ### Backend
 - Configure:
