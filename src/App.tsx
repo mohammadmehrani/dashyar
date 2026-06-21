@@ -14,8 +14,6 @@ import AdminLayout from '@/layouts/AdminLayout';
 // Pages
 import Home from '@/pages/Home';
 import Services from '@/pages/Services';
-import Portfolio from '@/pages/Portfolio';
-import ProjectDetail from '@/pages/ProjectDetail';
 import About from '@/pages/About';
 import Contact from '@/pages/Contact';
 import Login from '@/pages/Login';
@@ -88,7 +86,7 @@ function App() {
   return (
     <AppErrorBoundary>
       <QueryClientProvider client={queryClient}>
-        <ThemeProvider defaultTheme="light" storageKey="appb2b-theme">
+        <ThemeProvider defaultTheme="light" storageKey="drkimiahabibi-theme">
           <AuthProvider>
             <Router>
               <Routes>
@@ -96,8 +94,8 @@ function App() {
               <Route element={<MainLayout />}>
                 <Route path="/" element={<Home />} />
                 <Route path="/services" element={<Services />} />
-                <Route path="/portfolio" element={<Portfolio />} />
-                <Route path="/portfolio/:slug" element={<ProjectDetail />} />
+                <Route path="/portfolio" element={<Navigate to="/services" replace />} />
+                <Route path="/portfolio/:slug" element={<Navigate to="/services" replace />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<Contact />} />
               </Route>

@@ -1,99 +1,107 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import { coreAPI } from '@/lib/api';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
-import { Mail, Phone, MapPin, Send, Loader2 } from 'lucide-react';
+import { Clock3, Loader2, MapPin, Mail, Phone, Send, ShieldCheck } from 'lucide-react';
 import { toast } from 'sonner';
+
+type ContactFormState = {
+  name: string;
+  email: string;
+  phone: string;
+  subject: string;
+  preferredDate: string;
+  message: string;
+};
 
 export default function Contact() {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === 'fa';
-  type ContactFormState = {
-    name: string;
-    email: string;
-    phone: string;
-    company: string;
-    service_type: string;
-    budget: string;
-    subject: string;
-    message: string;
-  };
-  type ContactApiPayload = {
-    name: string;
-    email: string;
-    phone?: string;
-    subject: string;
-    message: string;
-  };
 
   const [formData, setFormData] = useState<ContactFormState>({
     name: '',
     email: '',
     phone: '',
-    company: '',
-    service_type: '',
-    budget: '',
     subject: '',
+    preferredDate: '',
     message: '',
   });
 
-  const { data: contactInfoData } = useQuery({
-    queryKey: ['contact-info'],
-    queryFn: () => coreAPI.getContactInfo(),
-    staleTime: 5 * 60 * 1000,
-  });
-
-  const contactInfo = contactInfoData?.data?.[0] || {};
-
-  const sendMessageMutation = useMutation({
-    mutationFn: (data: ContactApiPayload) => coreAPI.sendContactMessage(data),
+  const submitMutation = useMutation({
+    mutationFn: (data: { name: string; email: string; phone?: string; subject: string; message: string }) =>
+      coreAPI.sendContactMessage(data),
     onSuccess: () => {
       toast.success(t('contact.form.success'));
-    setFormData({ name: '', email: '', phone: '', company: '', service_type: '', budget: '', subject: '', message: '' });
+      setFormData({ name: '', email: '', phone: '', subject: '', preferredDate: '', message: '' });
     },
     onError: () => toast.error(t('contact.form.error')),
   });
 
   useEffect(() => {
-    document.title = `${t('contact.title')} - Dashyar`;
+    document.title = `${t('contact.title')} - ${t('app.name')}`;
   }, [t]);
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    const composedMessage = [
+    const message = [
       formData.message,
-      formData.company ? `\nCompany: ${formData.company}` : '',
-      formData.service_type ? `\nService: ${formData.service_type}` : '',
-      formData.budget ? `\nBudget: ${formData.budget}` : '',
-    ].join('');
+      formData.preferredDate ? `${isRTL ? 'تاریخ پیشنهادی' : 'Preferred date'}: ${formData.preferredDate}` : '',
+    ]
+      .filter(Boolean)
+      .join('\n\n');
 
-    const payload: ContactApiPayload = {
+    submitMutation.mutate({
       name: formData.name,
       email: formData.email,
-      phone: formData.phone,
-      subject: formData.subject,
-      message: composedMessage,
-    };
-
-    sendMessageMutation.mutate(payload);
+      phone: formData.phone || undefined,
+      subject: formData.subject || (isRTL ? 'درخواست نوبت' : 'Appointment request'),
+      message,
+    });
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData((current: ContactFormState) => ({ ...current, [event.target.name]: event.target.value }));
+    setFormData((current) => ({ ...current, [event.target.name]: event.target.value }));
   };
+
+  const clinicInfo = [
+    {
+      icon: MapPin,
+      title: t('contact.address'),
+      value: isRTL ? 'رباط‌کریم، تهران' : 'Robat Karim, Tehran',
+    },
+    {
+      icon: Phone,
+      title: t('contact.phone'),
+      value: isRTL ? 'برای نوبت با شماره مطب تماس بگیرید' : 'Call the clinic number to book',
+    },
+    {
+      icon: Mail,
+      title: t('contact.email'),
+      value: 'info@drkimiahabibi.com',
+    },
+    {
+      icon: Clock3,
+      title: isRTL ? 'ساعات پاسخ‌گویی' : 'Response hours',
+      value: isRTL ? 'شنبه تا چهارشنبه، ۹ تا ۱۸' : 'Sat to Wed, 9:00 to 18:00',
+    },
+  ];
 
   return (
     <div className="min-h-screen pt-20">
       <section className="py-14 md:py-20">
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-3xl text-center">
-            <h1 className="text-4xl md:text-6xl font-bold">{t('contact.title')}</h1>
+            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-4 py-2 text-xs font-semibold text-emerald-700">
+              <ShieldCheck className="h-3.5 w-3.5" />
+              {isRTL ? 'نوبت‌گیری سریع' : 'Quick booking'}
+            </div>
+            <h1 className="mt-5 text-4xl font-black md:text-6xl">{t('contact.title')}</h1>
             <p className="mt-5 text-muted-foreground md:text-lg">{t('contact.subtitle')}</p>
           </div>
         </div>
@@ -108,31 +116,20 @@ export default function Contact() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <Card>
-                <CardContent className="p-6 space-y-5">
-                  <div className="flex gap-3">
-                    <Mail className="h-5 w-5 text-primary mt-1" />
-                    <div>
-                      <h3 className="font-semibold">{t('contact.email')}</h3>
-                      <p className="text-sm text-muted-foreground">{contactInfo.email || 'hello@dashyar.com'}</p>
-                    </div>
-                  </div>
-                  <div className="flex gap-3">
-                    <Phone className="h-5 w-5 text-primary mt-1" />
-                    <div>
-                      <h3 className="font-semibold">{t('contact.phone')}</h3>
-                      <p className="text-sm text-muted-foreground">{contactInfo.phone1 || '+98 912 000 0000'}</p>
-                    </div>
-                  </div>
-                  <div className="flex gap-3">
-                    <MapPin className="h-5 w-5 text-primary mt-1" />
-                    <div>
-                      <h3 className="font-semibold">{t('contact.address')}</h3>
-                      <p className="text-sm text-muted-foreground">
-                        {isRTL ? contactInfo.address_fa || t('contact.city') : contactInfo.address_en || t('contact.city')}
-                      </p>
-                    </div>
-                  </div>
+              <Card className="rounded-[1.75rem]">
+                <CardContent className="space-y-5 p-6">
+                  {clinicInfo.map((item) => {
+                    const Icon = item.icon;
+                    return (
+                      <div key={item.title} className="flex gap-3">
+                        <Icon className="mt-1 h-5 w-5 text-emerald-700" />
+                        <div>
+                          <h3 className="font-semibold">{item.title}</h3>
+                          <p className="text-sm text-muted-foreground">{item.value}</p>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </CardContent>
               </Card>
             </motion.div>
@@ -143,62 +140,59 @@ export default function Contact() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <Card>
+              <Card className="rounded-[1.75rem]">
                 <CardContent className="p-6 md:p-8">
-                  <h2 className="text-2xl font-semibold mb-6">{t('contact.form.title')}</h2>
+                  <h2 className="mb-6 text-2xl font-black">{t('contact.form.title')}</h2>
                   <form onSubmit={handleSubmit} className="space-y-5">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                       <div className="space-y-2">
                         <Label htmlFor="name">{t('contact.form.name')}</Label>
                         <Input id="name" name="name" value={formData.name} onChange={handleChange} required />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="email">{t('contact.form.email')}</Label>
-                        <Input id="email" name="email" type="email" value={formData.email} onChange={handleChange} required />
-                      </div>
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div className="space-y-2">
                         <Label htmlFor="phone">{t('contact.form.phone')}</Label>
                         <Input id="phone" name="phone" value={formData.phone} onChange={handleChange} />
                       </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                      <div className="space-y-2">
+                        <Label htmlFor="email">{t('contact.form.email')}</Label>
+                        <Input id="email" name="email" type="email" value={formData.email} onChange={handleChange} required />
+                      </div>
                       <div className="space-y-2">
                         <Label htmlFor="subject">{t('contact.form.subject')}</Label>
-                        <Input id="subject" name="subject" value={formData.subject} onChange={handleChange} required />
-                      </div>
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="company">{isRTL ? 'نام شرکت' : 'Company'}</Label>
-                        <Input id="company" name="company" value={formData.company} onChange={handleChange} />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="service_type">{isRTL ? 'نوع خدمت' : 'Service Type'}</Label>
                         <Input
-                          id="service_type"
-                          name="service_type"
-                          value={formData.service_type}
+                          id="subject"
+                          name="subject"
+                          value={formData.subject}
                           onChange={handleChange}
-                          placeholder={isRTL ? 'وب، موبایل، هوش مصنوعی...' : 'Web, Mobile, AI...'}
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="budget">{isRTL ? 'بازه بودجه' : 'Budget Range'}</Label>
-                        <Input
-                          id="budget"
-                          name="budget"
-                          value={formData.budget}
-                          onChange={handleChange}
-                          placeholder={isRTL ? 'مثلا ۵۰ تا ۱۰۰ میلیون' : 'e.g. $5k - $10k'}
+                          placeholder={isRTL ? 'فیزیوتراپی، شاک ویو، طب فیزیکی...' : 'Physiotherapy, shockwave, rehab...'}
+                          required
                         />
                       </div>
                     </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="preferredDate">{isRTL ? 'تاریخ پیشنهادی' : 'Preferred date'}</Label>
+                      <Input id="preferredDate" name="preferredDate" type="date" value={formData.preferredDate} onChange={handleChange} />
+                    </div>
+
                     <div className="space-y-2">
                       <Label htmlFor="message">{t('contact.form.message')}</Label>
-                      <Textarea id="message" name="message" rows={6} value={formData.message} onChange={handleChange} required />
+                      <Textarea
+                        id="message"
+                        name="message"
+                        rows={6}
+                        value={formData.message}
+                        onChange={handleChange}
+                        required
+                        placeholder={isRTL ? 'شرح مشکل، مدت درد و هر نکته مهم دیگر' : 'Describe the problem, duration, and any important notes'}
+                      />
                     </div>
-                    <Button type="submit" size="lg" className="w-full" disabled={sendMessageMutation.isPending}>
-                      {sendMessageMutation.isPending ? (
+
+                    <Button type="submit" size="lg" className="w-full" disabled={submitMutation.isPending}>
+                      {submitMutation.isPending ? (
                         <>
                           <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                           {t('contact.form.sending')}
