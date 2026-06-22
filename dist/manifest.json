@@ -1,11 +1,11 @@
 {
-  "name": "App@B2B",
-  "short_name": "App@B2B",
-  "description": "راهکارهای پیشرفته توسعه نرم‌افزار",
+  "name": "دکتر کیمیا حبیبی سیاهپوش",
+  "short_name": "دکتر کیمیا",
+  "description": "مطب فیزیوتراپی و طب فیزیکی دکتر کیمیا حبیبی سیاهپوش",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0f172a",
-  "theme_color": "#0f172a",
+  "background_color": "#eaf7f4",
+  "theme_color": "#d5f3eb",
   "orientation": "portrait-primary",
   "scope": "/",
   "lang": "fa",
@@ -24,7 +24,7 @@
       "purpose": "any maskable"
     }
   ],
-  "categories": ["business", "productivity", "utilities"],
+  "categories": ["medical", "health", "productivity"],
   "screenshots": [
     {
       "src": "/screenshot-1.jpg",
@@ -40,17 +40,17 @@
   ],
   "shortcuts": [
     {
-      "name": "خدمات",
+      "name": "خدمات درمانی",
       "short_name": "خدمات",
-      "description": "مشاهده خدمات ما",
+      "description": "مشاهده خدمات تخصصی مطب",
       "url": "/services",
       "icons": [{ "src": "/icon-192x192.png", "sizes": "192x192" }]
     },
     {
-      "name": "نمونه کارها",
-      "short_name": "نمونه کارها",
-      "description": "مشاهده نمونه کارها",
-      "url": "/portfolio",
+      "name": "درباره پزشک",
+      "short_name": "درباره",
+      "description": "مشاهده معرفی و سوابق پزشک",
+      "url": "/about",
       "icons": [{ "src": "/icon-192x192.png", "sizes": "192x192" }]
     },
     {
