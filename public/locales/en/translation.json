@@ -1,126 +1,126 @@
 {
   "app": {
-    "name": "Dashyar",
-    "tagline": "Modern Software Product Studio",
-    "description": "Web, mobile, AI, and product engineering partner"
+    "name": "Dr. Kimia Habibi",
+    "tagline": "Physiotherapy, physical medicine, and rehabilitation",
+    "description": "A focused clinic for pain relief, recovery, and return to movement"
   },
   "nav": {
     "home": "Home",
     "services": "Services",
-    "portfolio": "Portfolio",
-    "about": "About",
-    "contact": "Contact",
-    "login": "Login",
-    "register": "Register",
-    "dashboard": "Dashboard",
+    "portfolio": "Treatment path",
+    "about": "About Doctor",
+    "contact": "Book & Contact",
+    "login": "Panel Login",
+    "register": "Request Access",
+    "dashboard": "Internal Panel",
     "admin": "Admin Panel",
     "logout": "Logout"
   },
   "hero": {
-    "title": "Build Better Digital Products",
-    "subtitle": "Dashyar helps teams launch scalable products with clear design, robust architecture, and business-focused execution.",
-    "cta_primary": "Explore Services",
-    "cta_secondary": "Start a Project"
+    "title": "Reduce pain and restore movement",
+    "subtitle": "At Dr. Kimia Habibi's clinic, treatment plans are built from a careful exam, your history, and a realistic recovery goal so the journey stays clear and measurable.",
+    "cta_primary": "View Services",
+    "cta_secondary": "Book an Appointment"
   },
   "home": {
     "cta": {
-      "title": "Need a reliable tech team for your next product?",
-      "subtitle": "Share your business goals with us. We turn ideas into production-ready systems."
+      "title": "Need a clear and trustworthy path to start treatment?",
+      "subtitle": "You can book directly on this site, review services, and contact the clinic without friction."
     }
   },
   "services": {
-    "title": "Our Services",
-    "subtitle": "End-to-end delivery from product strategy to development and growth.",
+    "title": "Specialized Services",
+    "subtitle": "A practical set of treatments for musculoskeletal pain, sports injuries, and rehabilitation.",
     "web_development": {
-      "title": "Web Development",
-      "description": "Fast, secure web applications built with modern frontend and backend stacks."
+      "title": "Physiotherapy & Manual Therapy",
+      "description": "Reduce pain, improve movement patterns, and support functional recovery with tailored protocols."
     },
     "mobile_app": {
-      "title": "Mobile Development",
-      "description": "Cross-platform and native mobile apps focused on performance and usability."
+      "title": "Shockwave & High-Power Laser",
+      "description": "Adjunct device-based treatments that help reduce pain and accelerate healing."
     },
     "ai": {
-      "title": "AI Solutions",
-      "description": "Applied AI for automation, prediction, and smart customer experiences."
+      "title": "Physical Medicine & Rehabilitation",
+      "description": "Detailed assessment, recovery planning, and step-by-step follow-up to return to daily life."
     },
     "design": {
-      "title": "UI/UX Design",
-      "description": "User-centric design systems and interfaces aligned with your product goals."
+      "title": "Exercise Therapy",
+      "description": "Purposeful exercises that build stability, strength, and resilience against relapse."
     },
     "cloud": {
-      "title": "Cloud & DevOps",
-      "description": "Infrastructure, CI/CD, observability, and secure deployment pipelines."
+      "title": "EMG & Nerve Function Review",
+      "description": "Clinical review of nerve involvement to guide the next treatment decision."
     },
     "security": {
-      "title": "Security Engineering",
-      "description": "Practical security hardening for applications, APIs, and infrastructure."
+      "title": "Acupuncture & Dry Needling",
+      "description": "A helpful option for reducing spasm and muscle pain alongside the main treatment."
     },
     "performance": {
-      "title": "Performance Optimization",
-      "description": "Measure, tune, and improve runtime performance across your stack."
+      "title": "Special Injections & PRP",
+      "description": "Adjunct treatment options for selected cases under direct physician supervision."
     },
     "cta": {
-      "title": "Looking for a custom implementation?",
-      "subtitle": "We can design and build a solution tailored to your workflow and budget."
+      "title": "Need guidance choosing the right treatment?",
+      "subtitle": "Book a visit or call the clinic and we will recommend the best option based on your condition."
     },
-    "order_project": "Request a Project",
-    "technologies": "Technologies",
-    "features": "Features"
+    "order_project": "Request Appointment",
+    "technologies": "Methods",
+    "features": "Benefits"
   },
   "portfolio": {
-    "title": "Portfolio",
-    "subtitle": "Selected product and software delivery case studies.",
+    "title": "Treatment Path",
+    "subtitle": "A snapshot of the clinic's treatment approach and follow-up metrics.",
     "all": "All",
-    "website": "Website",
-    "app": "App",
-    "graphic": "Design",
+    "website": "General",
+    "app": "Clinic",
+    "graphic": "Educational",
     "view_details": "View Details",
-    "technologies": "Technologies",
-    "client": "Client",
-    "project_url": "Project URL",
-    "github": "GitHub"
+    "technologies": "Methods",
+    "client": "Patient",
+    "project_url": "Related link",
+    "github": "Resources"
   },
   "team": {
-    "title": "Our Team",
-    "subtitle": "Experienced engineers and designers focused on outcomes.",
+    "title": "Care Team",
+    "subtitle": "People who keep the clinic organized, responsive, and calm.",
     "experience": "Years of Experience",
-    "projects": "Projects",
+    "projects": "Case",
     "skills": "Skills"
   },
   "about": {
-    "title": "About Us",
-    "description": "Dashyar is a software studio delivering practical digital products for startups and enterprises.",
+    "title": "About the Doctor",
+    "description": "Dr. Kimia Habibi Siyahpoosh focuses on physiotherapy, physical medicine, and rehabilitation with a precise, patient-first approach to pain relief and functional recovery.",
     "stats": {
-      "projects": "Projects Delivered",
-      "clients": "Happy Clients",
-      "awards": "Awards",
-      "experience": "Years Experience"
+      "projects": "Therapy Sessions",
+      "clients": "Ongoing Patients",
+      "awards": "Specialized Service",
+      "experience": "Years of Experience"
     }
   },
   "contact": {
-    "title": "Contact Us",
-    "subtitle": "Let us know what you are building.",
-    "city": "Tehran, Iran",
+    "title": "Book & Contact",
+    "subtitle": "Use this form to request an appointment, ask about services, or coordinate with the clinic.",
+    "city": "Robat Karim, Tehran",
     "email": "Email",
     "phone": "Phone",
     "address": "Address",
     "form": {
-      "title": "Send a Message",
-      "name": "Name",
+      "title": "Appointment Request",
+      "name": "Full name",
       "email": "Email",
       "phone": "Phone",
-      "subject": "Subject",
-      "message": "Message",
-      "send": "Send Message",
+      "subject": "Service type",
+      "message": "Additional notes",
+      "send": "Send Request",
       "sending": "Sending...",
-      "success": "Your message was sent successfully.",
-      "error": "Could not send your message. Please try again."
+      "success": "Your request has been submitted successfully.",
+      "error": "We could not submit your request. Please try again."
     }
   },
   "auth": {
     "login": {
-      "title": "Login",
-      "subtitle": "Access your Dashyar account.",
+      "title": "Panel Login",
+      "subtitle": "Used by the doctor, secretary, and authorized staff.",
       "email": "Email",
       "password": "Password",
       "submit": "Login",
@@ -128,33 +128,33 @@
       "success": "Logged in successfully.",
       "failed": "Login failed.",
       "forgot_password": "Forgot password?",
-      "no_account": "Don't have an account?",
-      "register": "Create account"
+      "no_account": "No access account yet?",
+      "register": "Request access"
     },
     "register": {
-      "title": "Create Account",
-      "subtitle": "Set up your account to manage projects and messages.",
-      "first_name": "First Name",
-      "last_name": "Last Name",
+      "title": "Create Access",
+      "subtitle": "Create a new account for authorized clinic staff.",
+      "first_name": "First name",
+      "last_name": "Last name",
       "email": "Email",
       "phone": "Phone",
-      "company": "Company",
+      "company": "Role / unit",
       "password": "Password",
-      "password_confirm": "Confirm Password",
-      "submit": "Register",
+      "password_confirm": "Confirm password",
+      "submit": "Create account",
       "loading": "Creating account...",
-      "success": "Registration completed.",
-      "failed": "Registration failed.",
+      "success": "Account created successfully.",
+      "failed": "Could not create the account.",
       "password_mismatch": "Passwords do not match.",
-      "accept_terms": "Please accept terms and conditions.",
-      "terms_label": "I agree to terms and conditions.",
+      "accept_terms": "Please accept the terms.",
+      "terms_label": "I agree to the terms and conditions.",
       "has_account": "Already have an account?",
-      "login": "Login"
+      "login": "Log in"
     },
     "logout": "Logout"
   },
   "dashboard": {
-    "title": "Dashboard",
+    "title": "Internal Panel",
     "welcome": "Welcome",
     "profile": "Profile",
     "messages": "Messages",
@@ -173,13 +173,13 @@
     "dashboard": "Dashboard",
     "users": "Users",
     "services": "Services",
-    "portfolio": "Portfolio",
+    "portfolio": "Treatment path",
     "team": "Team",
     "messages": "Messages",
     "settings": "Settings",
     "statistics": "Statistics",
     "total_users": "Total Users",
-    "total_projects": "Total Projects",
+    "total_projects": "Total Cases",
     "total_messages": "Total Messages",
     "pending_messages": "Pending Messages"
   },
@@ -189,7 +189,7 @@
     "switch": "Switch language"
   },
   "footer": {
-    "tagline": "We build practical software systems that ship and scale.",
+    "tagline": "Dr. Kimia Habibi's physiotherapy and physical medicine clinic in Robat Karim.",
     "quick_links": "Quick Links",
     "services": "Services",
     "contact": "Contact",
