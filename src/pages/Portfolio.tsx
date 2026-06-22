@@ -37,7 +37,7 @@ export default function Portfolio() {
   });
 
   useEffect(() => {
-    document.title = t('portfolio.title') + ' - Dashyar';
+    document.title = `${t('portfolio.title')} - ${t('app.name')}`;
   }, [t]);
 
   const projects = projectsData?.data?.results || [];
