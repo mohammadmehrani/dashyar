@@ -33,7 +33,7 @@ export default function ProjectDetail() {
 
   useEffect(() => {
     if (project) {
-      document.title = (isRTL ? project.title_fa : project.title_en) + ' - Dashyar';
+      document.title = `${isRTL ? project.title_fa : project.title_en} - ${t('app.name')}`;
     }
   }, [project, isRTL]);
 
