@@ -36,7 +36,7 @@ export default function Dashboard() {
   });
 
   useEffect(() => {
-    document.title = isRTL ? 'داشبورد - Dashyar' : 'Dashboard - Dashyar';
+    document.title = isRTL ? 'پنل داخلی - Dr Kimia Habibi' : 'Internal Panel - Dr Kimia Habibi';
   }, [isRTL]);
 
   const unreadMessages = unreadData?.data?.unread_messages || 0;

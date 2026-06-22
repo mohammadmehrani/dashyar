@@ -1,123 +1,160 @@
 {
   "app": {
-    "name": "App@B2B",
-    "tagline": "Advanced Software Development Solutions",
-    "description": "Professional programming and web design services provider"
+    "name": "Dr. Kimia Habibi",
+    "tagline": "Physiotherapy, physical medicine, and rehabilitation",
+    "description": "A focused clinic for pain relief, recovery, and return to movement"
   },
   "nav": {
     "home": "Home",
     "services": "Services",
-    "portfolio": "Portfolio",
-    "about": "About Us",
-    "contact": "Contact",
-    "login": "Login",
-    "register": "Register",
-    "dashboard": "Dashboard",
+    "portfolio": "Treatment path",
+    "about": "About Doctor",
+    "contact": "Book & Contact",
+    "login": "Panel Login",
+    "register": "Request Access",
+    "dashboard": "Internal Panel",
     "admin": "Admin Panel",
     "logout": "Logout"
   },
   "hero": {
-    "title": "Innovative Digital Solutions",
-    "subtitle": "We provide innovative solutions using the latest technologies in the world",
+    "title": "Reduce pain and restore movement",
+    "subtitle": "At Dr. Kimia Habibi's clinic, treatment plans are built from a careful exam, your history, and a realistic recovery goal so the journey stays clear and measurable.",
     "cta_primary": "View Services",
-    "cta_secondary": "Request Collaboration"
+    "cta_secondary": "Book an Appointment"
+  },
+  "home": {
+    "cta": {
+      "title": "Need a clear and trustworthy path to start treatment?",
+      "subtitle": "You can book directly on this site, review services, and contact the clinic without friction."
+    }
   },
   "services": {
-    "title": "Our Services",
-    "subtitle": "Comprehensive solutions for your business",
+    "title": "Specialized Services",
+    "subtitle": "A practical set of treatments for musculoskeletal pain, sports injuries, and rehabilitation.",
     "web_development": {
-      "title": "Advanced Web Development",
-      "description": "Design and development of modern websites with high security and performance for an unparalleled user experience."
+      "title": "Physiotherapy & Manual Therapy",
+      "description": "Reduce pain, improve movement patterns, and support functional recovery with tailored protocols."
     },
     "mobile_app": {
-      "title": "Mobile App Development",
-      "description": "Building mobile and desktop applications with unique user experience and excellent performance."
+      "title": "Shockwave & High-Power Laser",
+      "description": "Adjunct device-based treatments that help reduce pain and accelerate healing."
     },
     "ai": {
-      "title": "Artificial Intelligence",
-      "description": "Developing machine learning-based solutions, data processing, and computer vision."
+      "title": "Physical Medicine & Rehabilitation",
+      "description": "Detailed assessment, recovery planning, and step-by-step follow-up to return to daily life."
     },
     "design": {
-      "title": "Graphic Design",
-      "description": "Decentralized solutions based on innovative design with high quality and transparency."
+      "title": "Exercise Therapy",
+      "description": "Purposeful exercises that build stability, strength, and resilience against relapse."
     },
-    "order_project": "Order Project",
-    "technologies": "Technologies",
-    "features": "Features"
+    "cloud": {
+      "title": "EMG & Nerve Function Review",
+      "description": "Clinical review of nerve involvement to guide the next treatment decision."
+    },
+    "security": {
+      "title": "Acupuncture & Dry Needling",
+      "description": "A helpful option for reducing spasm and muscle pain alongside the main treatment."
+    },
+    "performance": {
+      "title": "Special Injections & PRP",
+      "description": "Adjunct treatment options for selected cases under direct physician supervision."
+    },
+    "cta": {
+      "title": "Need guidance choosing the right treatment?",
+      "subtitle": "Book a visit or call the clinic and we will recommend the best option based on your condition."
+    },
+    "order_project": "Request Appointment",
+    "technologies": "Methods",
+    "features": "Benefits"
   },
   "portfolio": {
-    "title": "Portfolio",
-    "subtitle": "Projects completed by our team",
+    "title": "Treatment Path",
+    "subtitle": "A snapshot of the clinic's treatment approach and follow-up metrics.",
     "all": "All",
-    "website": "Website",
-    "app": "App",
-    "graphic": "Graphic",
+    "website": "General",
+    "app": "Clinic",
+    "graphic": "Educational",
     "view_details": "View Details",
-    "technologies": "Technologies",
-    "client": "Client",
-    "project_url": "Project URL",
-    "github": "GitHub"
+    "technologies": "Methods",
+    "client": "Patient",
+    "project_url": "Related link",
+    "github": "Resources"
   },
   "team": {
-    "title": "Our Team",
-    "subtitle": "Experienced experts by your side",
-    "experience": "Years Experience",
-    "projects": "Projects",
+    "title": "Care Team",
+    "subtitle": "People who keep the clinic organized, responsive, and calm.",
+    "experience": "Years of Experience",
+    "projects": "Case",
     "skills": "Skills"
   },
   "about": {
-    "title": "About Us",
-    "description": "We are a creative studio in software design and development that offers unique digital solutions by combining art and technology.",
+    "title": "About the Doctor",
+    "description": "Dr. Kimia Habibi Siyahpoosh focuses on physiotherapy, physical medicine, and rehabilitation with a precise, patient-first approach to pain relief and functional recovery.",
     "stats": {
-      "projects": "Projects Completed",
-      "clients": "Happy Clients",
-      "awards": "Awards Won",
-      "experience": "Years Experience"
+      "projects": "Therapy Sessions",
+      "clients": "Ongoing Patients",
+      "awards": "Specialized Service",
+      "experience": "Years of Experience"
     }
   },
   "contact": {
-    "title": "Contact Us",
-    "subtitle": "Contact Information",
-    "form": {
-      "name": "Name",
-      "email": "Email",
-      "phone": "Phone",
-      "subject": "Subject",
-      "message": "Message",
-      "send": "Send Message",
-      "success": "Your message has been sent successfully."
-    },
+    "title": "Book & Contact",
+    "subtitle": "Use this form to request an appointment, ask about services, or coordinate with the clinic.",
+    "city": "Robat Karim, Tehran",
     "email": "Email",
     "phone": "Phone",
-    "address": "Address"
+    "address": "Address",
+    "form": {
+      "title": "Appointment Request",
+      "name": "Full name",
+      "email": "Email",
+      "phone": "Phone",
+      "subject": "Service type",
+      "message": "Additional notes",
+      "send": "Send Request",
+      "sending": "Sending...",
+      "success": "Your request has been submitted successfully.",
+      "error": "We could not submit your request. Please try again."
+    }
   },
   "auth": {
     "login": {
-      "title": "Login to Your Account",
+      "title": "Panel Login",
+      "subtitle": "Used by the doctor, secretary, and authorized staff.",
       "email": "Email",
       "password": "Password",
       "submit": "Login",
+      "loading": "Signing in...",
+      "success": "Logged in successfully.",
+      "failed": "Login failed.",
       "forgot_password": "Forgot password?",
-      "no_account": "Don't have an account?",
-      "register": "Register"
+      "no_account": "No access account yet?",
+      "register": "Request access"
     },
     "register": {
-      "title": "Register",
-      "first_name": "First Name",
-      "last_name": "Last Name",
+      "title": "Create Access",
+      "subtitle": "Create a new account for authorized clinic staff.",
+      "first_name": "First name",
+      "last_name": "Last name",
       "email": "Email",
       "phone": "Phone",
-      "company": "Company Name",
+      "company": "Role / unit",
       "password": "Password",
-      "password_confirm": "Confirm Password",
-      "submit": "Register",
+      "password_confirm": "Confirm password",
+      "submit": "Create account",
+      "loading": "Creating account...",
+      "success": "Account created successfully.",
+      "failed": "Could not create the account.",
+      "password_mismatch": "Passwords do not match.",
+      "accept_terms": "Please accept the terms.",
+      "terms_label": "I agree to the terms and conditions.",
       "has_account": "Already have an account?",
-      "login": "Login"
+      "login": "Log in"
     },
     "logout": "Logout"
   },
   "dashboard": {
-    "title": "User Dashboard",
+    "title": "Internal Panel",
     "welcome": "Welcome",
     "profile": "Profile",
     "messages": "Messages",
@@ -127,8 +164,8 @@
     "change_password": "Change Password",
     "new_message": "New Message",
     "send_message": "Send Message",
-    "no_messages": "No messages found",
-    "no_notifications": "No notifications found",
+    "no_messages": "No messages yet.",
+    "no_notifications": "No notifications yet.",
     "mark_all_read": "Mark all as read"
   },
   "admin": {
@@ -136,31 +173,33 @@
     "dashboard": "Dashboard",
     "users": "Users",
     "services": "Services",
-    "portfolio": "Portfolio",
+    "portfolio": "Treatment path",
     "team": "Team",
     "messages": "Messages",
     "settings": "Settings",
     "statistics": "Statistics",
     "total_users": "Total Users",
-    "total_projects": "Total Projects",
+    "total_projects": "Total Cases",
     "total_messages": "Total Messages",
     "pending_messages": "Pending Messages"
   },
   "language": {
-    "fa": "فارسی",
+    "fa": "Persian",
     "en": "English",
-    "switch": "Switch Language"
+    "switch": "Switch language"
   },
   "footer": {
-    "tagline": "Anything that fits in your monitor rectangle is our job.",
+    "tagline": "Dr. Kimia Habibi's physiotherapy and physical medicine clinic in Robat Karim.",
     "quick_links": "Quick Links",
     "services": "Services",
     "contact": "Contact",
-    "rights": "All rights reserved."
+    "rights": "All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
   },
   "common": {
     "loading": "Loading...",
-    "error": "An error occurred",
+    "error": "Something went wrong.",
     "retry": "Retry",
     "cancel": "Cancel",
     "save": "Save",
@@ -170,8 +209,8 @@
     "search": "Search",
     "filter": "Filter",
     "sort": "Sort",
-    "view_all": "View All",
-    "read_more": "Read More",
+    "view_all": "View all",
+    "read_more": "Read more",
     "close": "Close",
     "back": "Back",
     "next": "Next",
